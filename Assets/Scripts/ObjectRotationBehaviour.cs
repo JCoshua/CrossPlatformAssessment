@@ -25,6 +25,7 @@ public class ObjectRotationBehaviour : MonoBehaviour
         //If the ray hits an object
         if (Physics.Raycast(ray, out hitInfo))
         {
+            //Rotate the object
             Vector3 direction = (hitInfo.point - transform.position).normalized;
             direction = new Vector3(0, 0, direction.y);
             transform.Rotate(direction * _speed * Time.fixedDeltaTime);
