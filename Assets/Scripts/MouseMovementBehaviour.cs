@@ -6,6 +6,9 @@ public class MouseMovementBehaviour : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 0;
+    //Moves on the Y-axis if false
+    [SerializeField]
+    private bool _movesOnXAxis = true;
     private Rigidbody _rigidBody;
     private Camera _camera;
 
@@ -24,9 +27,18 @@ public class MouseMovementBehaviour : MonoBehaviour
         //If the ray hits an object
         if (Physics.Raycast(ray, out hitInfo))
         {
-            Vector2 direction = (hitInfo.point - transform.position).normalized;
-            direction = new Vector2(direction.x, 0);
-            transform.Translate(direction * _speed * Time.fixedDeltaTime);
+            if(_movesOnXAxis)
+            {
+                Vector2 direction = (hitInfo.point - transform.position).normalized;
+                direction = new Vector2(direction.x, 0);
+                transform.Translate(direction * _speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                Vector2 direction = (hitInfo.point - transform.position).normalized;
+                direction = new Vector2(0, direction.y);
+                transform.Translate(direction * _speed * Time.fixedDeltaTime);
+            }
         }
     }
 }

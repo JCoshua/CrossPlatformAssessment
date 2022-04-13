@@ -13,8 +13,8 @@ public class ScoreBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float height = _player.transform.position.y;
+        float height = _player.transform.position.y * 100;
         if (height < 0) height = 0;
-        _text.text = "Height: " + height;
+        _text.text = "Height: " + height + "ft";
     }
 }
